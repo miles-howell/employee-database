@@ -1,4 +1,5 @@
-# employee-database
+# employee-database   ![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)
+
 
 # 🗂️ Employee Directory — Internal Company Tool
 
@@ -49,8 +50,9 @@ License: [Creative Commons Attribution-NonCommercial 4.0](http://creativecommons
 
 ## 🚧 Data Privacy Notice
 
-**⚠️ Warning:** This project was originally built using real employee data.  
-To protect privacy, **all sensitive data must be removed** before sharing, cloning, or deploying this project outside the internal network.
+**⚠️ Warning:** This project was originally built using real employee data, but was fully cleaned of any **Personal Identifying Information (PII)** 
+
+To protect privacy, **all sensitive data must be removed** before sharing, cloning, or deploying this project outside of your internal network.
 
 Use the following command to safely clear the database:
 
