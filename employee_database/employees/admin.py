@@ -1,3 +1,8 @@
+# Copyright (c) 2025 Miles H. (Planned Pixel Studio)
+# Licensed for personal or educational use only.
+# Commercial use, redistribution, or resale requires a paid license.
+# Contact: miles@plannedpixel.com
+
 # employees/admin.py
 from django.contrib import admin
 from django.urls import path
