@@ -1,0 +1,85 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Employee Directory
+{% endblock %}
+
+{% block content %}
+  <div class="mycard"> 
+    <h1>Search results</h1>
+    <form method="get" action="{% url 'search_employees' %}" class="advanced-search-form">
+      <input type="text" name="firstname" placeholder="First name" value="{{ request.GET.firstname }}">
+      <input type="text" name="lastname" placeholder="Last name" value="{{ request.GET.lastname }}">
+      <input type="text" name="phone" placeholder="Phone" value="{{ request.GET.phone }}">
+      <input type="text" name="department" placeholder="Department" value="{{ request.GET.department }}">
+      <input type="text" name="title" placeholder="Title" value="{{ request.GET.title }}">
+
+      <label>
+        <input type="checkbox" name="head" {% if request.GET.head %}checked{% endif %}>
+        Dept. Head
+      </label>
+
+      <label>
+        <input type="checkbox" name="spv" {% if request.GET.spv %}checked{% endif %}>
+        Supervisor
+      </label>
+
+      <div class="doh-date-range">
+        <label>Date of Hire (From):</label>
+        <input type="date" name="doh_start" value="{{ request.GET.doh_start }}">
+        <label>Date of Hire (To):</label>
+        <input type="date" name="doh_end" value="{{ request.GET.doh_end }}">
+      </div>
+      
+
+      <div class="search-buttons">
+        <button type="submit">Search</button>
+        <button type="reset" class="reset-button" onclick="resetForm()">Reset</button>
+      </div>
+    </form>
+
+      <div class="employee-grid">
+        {% for x in results %}
+          <div class="employee-card hvr-float-shadow" 
+              data-aos="{% if forloop.counter0|divisibleby:2 %}zoom-in-left{% else %}zoom-in-right{% endif %}"
+              onclick="document.getElementById('{{ x.slug }}').click()">
+            <div class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10">
+              {% if x.head %}
+                <span class="watermark dept-head">🏛️ Dept. Head</span>
+              {% endif %}
+              {% if x.bday.month == today.month and x.bday.day == today.day %}
+                <span class="watermark birthday">🎂 Birthday</span>
+              {% endif %}
+              {% if x.doh.month == today.month and x.doh.day == today.day %}
+                <span class="watermark anniversary">🎉 Anniversary</span>
+              {% endif %}
+            </div>
+            <a href="{% url 'details' x.slug %}">
+              <div class="card-columns">
+                <div class="card-left">
+                  <strong>{{ x.firstname }} {{ x.lastname }}</strong><br>
+                  <sub><i class="fa fa-building" aria-hidden="true"></i> {{ x.department }}</sub>
+                </div>
+                <div class="card-right">
+                  <small><i class="fa fa-phone" aria-hidden="true"></i> {% if x.phone %}{{ x.phone }}{% else %}&nbsp;{% endif %}</small><br>
+                  <sub><strong>{{ x.title }}</strong></sub>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% empty %}
+          <p>No employees found.</p>
+        {% endfor %}
+      </div>
+  </div>
+
+<form method="get" action="{% url 'search_employees' %}">
+  {% for key, value in request.GET.items %}
+    <input type="hidden" name="{{ key }}" value="{{ value }}">
+  {% endfor %}
+  <input type="hidden" name="export" value="1">
+  <button type="submit" class="floating-button-left hvr-shutter-out-horizontal">Export CSV</button>
+</form>
+
+
+{% endblock %}

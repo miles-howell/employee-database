@@ -1,0 +1,76 @@
+{% extends "master.html" %}
+
+{% block title %}
+	Employee Directory
+{% endblock %}
+
+{% block content %}
+
+	{% if search_error %}
+	  <div class="search-error shake" id="search-error" style="opacity: 1;">
+	    Employee not found. Please try again.
+	  </div>
+	{% endif %}
+
+	<div class="mycard"> 
+		<h1>Employee Directory</h1>
+			<div class="button-container" style="text-align: center;">
+			  <form action="" method="get" style="display: inline-block;">
+			    <button type="submit" name="department" value="" class="{% if not selected_department %}active{% endif %}">
+			      All
+			    </button>
+			    {% for dept in departments %}
+			      <button type="submit" name="department" value="{{ dept }}" class="{% if dept == selected_department %}active{% endif %} hvr-grow">
+			        {{ dept }}
+			      </button>
+			    {% endfor %}
+			  </form>
+			</div>
+			<div class="employee-grid">
+			  {% for x in myEmps %}
+			    <div class="employee-card hvr-float-shadow" 
+            		data-aos="{% if forloop.counter0|divisibleby:2 %}zoom-in-left{% else %}zoom-in-right{% endif %}" 
+            		onclick="document.getElementById('{{ x.slug }}').click()">
+			      <div class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10">
+			        {% if x.head %}
+			          <span class="watermark dept-head">🏛️ Dept. Head</span>
+			        {% endif %}
+			        {% if x.bday.month == today.month and x.bday.day == today.day %}
+			          <span class="watermark birthday">🎂 Birthday</span>
+			        {% endif %}
+			        {% if x.doh.month == today.month and x.doh.day == today.day %}
+			          <span class="watermark anniversary">🎉 Anniversary</span>
+			        {% endif %}
+			      </div>
+			      <a id="{{ x.slug }}" href="{% url 'details' x.slug %}">
+			        <div class="card-columns">
+			          <div class="card-left">
+			            <strong>{{ x.firstname }} {{ x.lastname }}</strong><br>
+			            <sub><i class="fa fa-building" aria-hidden="true"></i> {{ x.department }}</sub>
+			          </div>
+			          <div class="card-right">
+			            <small><i class="fa fa-phone" aria-hidden="true"></i> {% if x.phone %}{{ x.phone }}{% else %}&nbsp;{% endif %}</small><br>
+			            <sub><strong>{{ x.title }}</strong></sub>
+			          </div>
+			        </div>
+			      </a>
+			    </div>
+			  {% empty %}
+			    <p>No employees found.</p>
+			  {% endfor %}
+			</div>
+	</div>
+
+	<script>
+	  document.addEventListener("DOMContentLoaded", () => {
+	    const errorMsg = document.getElementById("search-error");
+	    if (errorMsg) {
+	      setTimeout(() => {
+	        errorMsg.style.opacity = "0";
+	        setTimeout(() => errorMsg.remove(), 2000); // remove after fade
+	      }, 5000); // wait 5s before fade
+	    }
+	  });
+	</script>
+
+{% endblock %}

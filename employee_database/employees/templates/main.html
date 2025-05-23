@@ -1,0 +1,52 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Welcome
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <div class="mycard" style="text-align: center; max-width: 600px;">
+    <img src="{% static 'images/image001.jpg' %}" alt="Company Logo" style="width: 300px; height: auto; margin-bottom: 20px;"/>
+
+    <h1>Welcome to the Employee Directory</h1>
+    <p style="margin: 20px 0; font-size: 1.1em;">
+      Easily browse and connect with colleagues across all departments.
+    </p>
+
+    <a href="{% url 'employees' %}" class="cta-button">View Directory</a>
+  </div>
+
+  <div style="margin-top: 40px; text-align: center; font-size: 0.9em; color: #777;">
+    <p>Building a better team through connection and collaboration.</p>
+  </div>
+</div>
+
+<style>
+  .cta-button {
+    display: inline-block;
+    background-color: #0068a6;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: #005080;
+  }
+
+  .dark .cta-button {
+    background-color: #009de0;
+    color: #fff;
+  }
+
+  .dark .cta-button:hover {
+    background-color: #007bb5;
+  }
+</style>
+{% endblock %}

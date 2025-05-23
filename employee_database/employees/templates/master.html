@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <script>
+  (function() {
+    try {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (e) {}
+  })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'global.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link id="flatpickr-theme" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/themes/material_blue.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class="topnav">
+  <div class="nav-left">
+    <a href="/" class="nav-link {% if request.path == '/' %}active{% else %}hvr-underline-from-left{% endif %}">
+      <i class="fas fa-house"></i> Home
+    </a>
+    <a href="/employees/" class="nav-link {% if request.path == '/employees/' %}active{% else %}hvr-underline-from-left{% endif %}">
+      <i class="fas fa-users"></i> Employees
+    </a>
+    <a href="/search/" class="nav-link {% if request.path == '/search/' %}active{% else %}hvr-underline-from-left{% endif %}">
+      <i class="fas fa-search"></i> Search
+    </a>
+  </div>
+
+  <div class="nav-right">
+    <button id="theme-toggle" class="theme-toggle">
+      <i class="fas fa-moon fa-lg fa-fw"></i>
+    </button>
+  </div>
+</div>
+<a href="mailto:servicedesk@coxhealthplans.com" class="floating-button-right hvr-shutter-out-horizontal">
+  Submit a ticket
+</a>
+{% block content %}{% endblock %}
+
+<script>
+  const toggleBtn = document.getElementById("theme-toggle");
+  const icon = toggleBtn.querySelector("i");
+
+  function applyTheme(mode) {
+    document.documentElement.classList.add("theme-transition");
+    setTimeout(() => {
+      document.documentElement.classList.remove("theme-transition");
+    }, 100);
+
+    if (mode === "dark") {
+      document.documentElement.classList.add("dark");
+      icon.classList.replace("fa-moon", "fa-sun");
+      icon.classList.add("rotate");
+    } else {
+      document.documentElement.classList.remove("dark");
+      icon.classList.replace("fa-sun", "fa-moon");
+      icon.classList.add("rotate");
+    }
+
+    setTimeout(() => {
+      icon.classList.remove("rotate");
+    }, 400);
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    const newTheme = isDark ? "light" : "dark";
+    localStorage.setItem("theme", newTheme);
+    applyTheme(newTheme);
+    setTimeout(() => {
+      updateFlatpickrStylesheet();
+      initFlatpickr();
+    }, 50);
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      applyTheme("dark");
+    }
+    updateFlatpickrStylesheet();
+    initFlatpickr();
+  });
+
+  const dateInputs = document.querySelectorAll("input[type='date']");
+  let flatpickrInstances = [];
+
+  function getCurrentTheme() {
+    return document.documentElement.classList.contains("dark") ? "dark" : "airbnb";
+  }
+
+  function updateFlatpickrStylesheet() {
+    const theme = getCurrentTheme();
+    const themeHref = `https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/themes/${theme}.css`;
+    const themeLink = document.getElementById("flatpickr-theme");
+    if (themeLink) {
+      themeLink.href = themeHref;
+    }
+  }
+
+  function initFlatpickr() {
+    flatpickrInstances.forEach(fp => fp.destroy());
+    flatpickrInstances = [];
+    dateInputs.forEach(input => {
+      const fp = flatpickr(input, {
+        dateFormat: "Y-m-d",
+        disableMobile: true,
+        minDate: "1900-01-01",
+        maxDate: "2100-12-31",
+        locale: { firstDayOfWeek: 1 }
+      });
+      flatpickrInstances.push(fp);
+    });
+  }
+
+  function resetForm() {
+      // Get the form element
+      const form = document.querySelector('.advanced-search-form');
+      
+      // Reset the entire form (including text inputs and checkboxes)
+      form.reset();
+
+      // Manually clear the department name text field
+      const departmentField = form.querySelector('input[name="department"]');
+      if (departmentField) {
+          departmentField.value = ''; // Clear the department field
+      }
+
+      // Manually clear the checkbox fields (if needed)
+      const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => checkbox.checked = false);
+  }
+
+
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    disable: false,
+    startEvent: 'DOMContentLoaded',
+    initClassName: 'aos-init',
+    animatedClassName: 'aos-animate',
+    useClassNames: false,
+    disableMutationObserver: false,
+    debounceDelay: 50,
+    throttleDelay: 99,
+    offset: 50,
+    delay: 50,
+    duration: 250,
+    easing: 'ease-out-cubic',
+    once: false,
+    mirror: false,
+  });
+</script>
+</body>
+</html>

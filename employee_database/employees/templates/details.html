@@ -1,0 +1,52 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Details about {{ myEmp.firstname }} {{ myEmp.lastname }}
+{% endblock %}
+
+{% block content %}
+  <div class="mycard">
+    <div class="profile-header">
+
+      <div class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10">
+        {% if myEmp.head %}
+          <span class="watermark dept-head">🏛️ Dept. Head</span>
+        {% endif %}
+        {% if myEmp.bday.month == today.month and myEmp.bday.day == today.day %}
+          <span class="watermark birthday">🎂 Birthday</span>
+        {% endif %}
+        {% if myEmp.doh.month == today.month and myEmp.doh.day == today.day %}
+          <span class="watermark anniversary">🎉 Anniversary</span>
+        {% endif %}
+      </div>
+      <div class="avatar">
+        {{ myEmp.firstname|slice:":1" }}{{ myEmp.lastname|slice:":1" }}
+      </div>
+      <h1><span>{{ myEmp.firstname }} {{ myEmp.lastname }}</span></h1>
+    </div>
+
+    <div class="info-block">
+      <div class="info-column">
+        <span class="label"><i class="fas fa-phone"></i> Phone</span>
+        <span class="value">{{ myEmp.phone }}</span>
+      </div>
+      <div class="info-column">
+        <span class="label"><i class="fas fa-building"></i> Department</span>
+        <span class="value">{{ myEmp.department }}</span>
+      </div>
+      <div class="info-column">
+        <span class="label"><i class="fas fa-briefcase"></i> Title</span>
+        <span class="value">{{ myEmp.title }}</span>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="{{ referer }}" class="back-link hvr-backward"><i class="fas fa-chevron-left"></i> Back</a>
+      <a href="mailto:{{ myEmp.email }}" class="email-link hvr-forward" 
+        style="{% if '*' in myEmp.department or '*' in myEmp.email %} pointer-events: none; color: gray; opacity: 0.6;  {% endif %}">
+        <i class="fas fa-envelope"></i> Email</a>
+    </div>
+
+  </div>
+
+{% endblock %}
