@@ -6,6 +6,18 @@ This project is a fully functional **employee directory web app** built with Dja
 
 ---
 
+## 🔒 License
+
+This project is shared for portfolio and demonstration purposes only.
+
+🛑 **Unauthorized commercial use, resale, or redistribution is strictly prohibited.**  
+💼 If you're interested in using this project for business, client work, or integration into a product:
+
+📩 **Reach out for a commercial license** at [miles@plannedpixel.com](mailto:miles@plannedpixel.com)
+
+License: [Creative Commons Attribution-NonCommercial 4.0](http://creativecommons.org/licenses/by-nc/4.0/)
+
+
 ## 🔧 Tech Stack
 
 - **Backend:** Python, Django
