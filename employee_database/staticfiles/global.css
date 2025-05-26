@@ -1199,7 +1199,7 @@ h2 {
   }
 
   .theme-toggle {
-    margin-right: 1rem 0 0 1rem;
+    margin: 1rem 0 0 1rem;
     font-size: 1.2rem;
   }
 
@@ -1213,7 +1213,7 @@ h2 {
   .mycard {
     max-width: 100%;
     width: 95%;
-    margin: 2rem auto;
+    margin: 8rem auto;
     padding: 15px;
   }
 
