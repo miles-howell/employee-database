@@ -32,7 +32,6 @@ def landing_page(request):
     return render(request, 'landing.html', context)
 
 def employees(request):
-    def employees(request):
     print(f"EMPLOYEES PAGE HIT — path: {request.path}")
     ...
 
