@@ -16,6 +16,7 @@ import csv
 logger = logging.getLogger(__name__)
 
 def landing_page(request):
+    print(f"LANDING PAGE HIT — path: {request.path}")
     today = date.today()
     this_month = today.month
 
@@ -31,6 +32,10 @@ def landing_page(request):
     return render(request, 'landing.html', context)
 
 def employees(request):
+    def employees(request):
+    print(f"EMPLOYEES PAGE HIT — path: {request.path}")
+    ...
+
     #template = loader.get_template('directory.html')
     today = date.today()
     selected_department = request.GET.get('department')
