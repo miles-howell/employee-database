@@ -1189,6 +1189,36 @@ h2 {
     border-bottom: 2px solid #7dd3fc; /* Same color for border */
 }
 
+.site-footer {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    background-color: #e6eef3;
+    color: #4d89a6;
+    font-size: 0.85rem;
+    margin-top: 4rem;
+    border-top: 1px solid #bcd6e3;
+}
+
+.site-footer p {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* Dark Mode */
+.dark .site-footer {
+    background-color: #1e2a36;
+    color: #80d4ff;
+    border-top: 1px solid #304654;
+}
+
+.dark .site-footer p {
+    opacity: 0.7;
+}
+
+
 /* =================== MOBILE RESPONSIVE ENHANCEMENTS =================== */
 @media (max-width: 768px) {
 
