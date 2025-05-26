@@ -30,7 +30,9 @@ SECRET_KEY = 'django-insecure-m8e1rqort$xg6tsbl(ser%!#*$8bo&dcftne9z+b1fxxh(n^dl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'emp-demo.plannedpixel.com']
+# OR for your subdomain demo:
+
 
 
 # Application definition
@@ -54,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'employees.middleware.analytics.AnalyticsMiddleware',
+    #'employees.middleware.analytics.AnalyticsMiddleware',
 
 ]
 

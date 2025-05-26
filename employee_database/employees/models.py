@@ -25,6 +25,7 @@ class Employees(models.Model):
 	def save(self, *args, **kwargs):
 		self.firstname = self.firstname.strip()
 		self.lastname = self.lastname.strip()
+		self.phone = "417-123-4567"
 
 		if not self.firstname or not self.lastname:
 			raise ValueError("Firstname and lastname cannot be empty. ")

@@ -6,93 +6,155 @@ Contact: miles@plannedpixel.com
 
 -->
 
-{% extends "master.html" %}
-{% load static %}
-
-{% block content %}
+{% extends "master.html" %} {% load static %} {% block content %}
 <div class="mycard">
-  <div style="text-align: center; margin-bottom: 20px;">
-    <img src="{% static 'images\\image001.jpg' %}" alt="Logo" style="width: 250px; max-height: 80px; object-fit: contain;">
-  </div>
-
-  <h1>Directory</h1>
-
-  <div style="display: flex; flex-direction: row; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-
-    <!-- Birthdays Column -->
-    <div style="flex: 1; min-width: 300px; max-width: 600px;">
-      <h2>Birthdays</h2>
-      {% for emp in birthdays %}
-        <div class="employee-card" 
-            onclick="window.location.href='{% url 'details' emp.slug %}'">
-            <div class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10">
-              {% if emp.head %}
-                <span class="watermark dept-head">🏛️ Dept. Head</span>
-              {% endif %}
-              {% if emp.bday.month == today.month and emp.bday.day == today.day %}
-                <span class="watermark birthday">🎂 Birthday</span>
-              {% endif %}
-              {% if emp.doh.month == today.month and emp.doh.day == today.day %}
-                <span class="watermark anniversary">🎉 Anniversary</span>
-              {% endif %}
-            </div>
-          <a href="{% url 'details' emp.slug %}">
-            <div class="card-columns" style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
-              <div class="card-left" style="display: flex; flex-direction: column; align-items: center;">
-                <div class="avatar" style="transform: scale(0.7); font-size: 1.1rem;">
-                  {{ emp.firstname|slice:":1" }}{{ emp.lastname|slice:":1" }}
-                </div>
-                <sub style="margin-top: 4px;">{{ emp.department }}</sub>
-              </div>
-              <div class="card-right" style="text-align: center;">
-                <strong>{{ emp.firstname }} {{ emp.lastname }}</strong><br>
-                <small><i class="fa fa-birthday-cake" aria-hidden="true"></i> {{ emp.bday|date:"m/d" }}</small>
-              </div>
-            </div>
-          </a>
-        </div>
-      {% empty %}
-        <p style="text-align:center;">No birthdays this month.</p>
-      {% endfor %}
+    <div style="text-align: center; margin-bottom: 20px">
+        <img
+            src="https://www.plannedpixel.com/img/filler_logo.jpg"
+            alt="Logo"
+            style="width: 250px; max-height: 80px; object-fit: contain"
+        />
     </div>
 
-    <!-- Anniversaries Column -->
-    <div style="flex: 1; min-width: 300px; max-width: 600px;">
-      <h2>Anniversaries</h2>
-      {% for emp in anniversaries %}
-        <div class="employee-card" 
-            onclick="window.location.href='{% url 'details' emp.slug %}'">
-            <div class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10">
-              {% if emp.head %}
-                <span class="watermark dept-head">🏛️ Dept. Head</span>
-              {% endif %}
-              {% if emp.bday.month == today.month and emp.bday.day == today.day %}
-                <span class="watermark birthday">🎂 Birthday</span>
-              {% endif %}
-              {% if emp.doh.month == today.month and emp.doh.day == today.day %}
-                <span class="watermark anniversary">🎉 Anniversary</span>
-              {% endif %}
-            </div>
-          <a href="{% url 'details' emp.slug %}">
-            <div class="card-columns" style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
-              <div class="card-left" style="display: flex; flex-direction: column; align-items: center;">
-                <div class="avatar" style="transform: scale(0.7); font-size: 1.1rem;">
-                  {{ emp.firstname|slice:":1" }}{{ emp.lastname|slice:":1" }}
-                </div>
-                <sub style="margin-top: 4px;">{{ emp.department }}</sub>
-              </div>
-              <div class="card-right" style="text-align: center;">
-                <strong>{{ emp.firstname }} {{ emp.lastname }}</strong><br>
-                <small><i class="fa fa-briefcase" aria-hidden="true"></i> {{ emp.doh|date:"m/d" }}</small>
-              </div>
-            </div>
-          </a>
-        </div>
-      {% empty %}
-        <p style="text-align:center;">No anniversaries this month.</p>
-      {% endfor %}
-    </div>
+    <h1>Directory</h1>
 
-  </div>
+    <div
+        style="
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        "
+    >
+        <!-- Birthdays Column -->
+        <div style="flex: 1; min-width: 300px; max-width: 600px">
+            <h2>Birthdays</h2>
+            {% for emp in birthdays %}
+            <div
+                class="employee-card"
+                onclick="window.location.href='{% url 'details' emp.slug %}'"
+            >
+                <div
+                    class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10"
+                >
+                    {% if emp.head %}
+                    <span class="watermark dept-head">🏛️ Dept. Head</span>
+                    {% endif %} {% if emp.bday.month == today.month and emp.bday.day == today.day %}
+                    <span class="watermark birthday">🎂 Birthday</span>
+                    {% endif %} {% if emp.doh.month == today.month and emp.doh.day == today.day %}
+                    <span class="watermark anniversary">🎉 Anniversary</span>
+                    {% endif %}
+                </div>
+                <a href="{% url 'details' emp.slug %}">
+                    <div
+                        class="card-columns"
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            gap: 1rem;">
+                        <div
+                            class="card-left"
+                            style="
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;">
+                            <div
+                                class="avatar"
+                                style="transform: scale(0.7); font-size: 1.1rem">
+                                {{ emp.firstname|slice:":1" }}{{ emp.lastname|slice:":1" }}
+                            </div>
+                            <sub style="margin-top: 4px"
+                                >{{ emp.department }}</sub
+                            >
+                        </div>
+                        <div class="card-right" style="text-align: center">
+                            <strong
+                                >{{ emp.firstname }} {{ emp.lastname }}</strong
+                            ><br />
+                            <small
+                                ><i
+                                    class="fa fa-birthday-cake"
+                                    aria-hidden="true"
+                                ></i>
+                                {{ emp.bday|date:"m/d" }}</small
+                            >
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p style="text-align: center">No birthdays this month.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Anniversaries Column -->
+        <div style="flex: 1; min-width: 300px; max-width: 600px">
+            <h2>Anniversaries</h2>
+            {% for emp in anniversaries %}
+            <div
+                class="employee-card"
+                onclick="window.location.href='{% url 'details' emp.slug %}'"
+            >
+                <div
+                    class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10"
+                >
+                    {% if emp.head %}
+                    <span class="watermark dept-head">🏛️ Dept. Head</span>
+                    {% endif %} {% if emp.bday.month == today.month and emp.bday.day == today.day %}
+                    <span class="watermark birthday">🎂 Birthday</span>
+                    {% endif %} {% if emp.doh.month == today.month and emp.doh.day == today.day %}
+                    <span class="watermark anniversary">🎉 Anniversary</span>
+                    {% endif %}
+                </div>
+                <a href="{% url 'details' emp.slug %}">
+                    <div
+                        class="card-columns"
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            gap: 1rem;
+                        "
+                    >
+                        <div
+                            class="card-left"
+                            style="
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                            "
+                        >
+                            <div
+                                class="avatar"
+                                style="transform: scale(0.7); font-size: 1.1rem"
+                            >
+                                {{ emp.firstname|slice:":1" }}{{ emp.lastname|slice:":1" }}
+                            </div>
+                            <sub style="margin-top: 4px"
+                                >{{ emp.department }}</sub
+                            >
+                        </div>
+                        <div class="card-right" style="text-align: center">
+                            <strong
+                                >{{ emp.firstname }} {{ emp.lastname }}</strong
+                            ><br />
+                            <small
+                                ><i
+                                    class="fa fa-briefcase"
+                                    aria-hidden="true"
+                                ></i>
+                                {{ emp.doh|date:"m/d" }}</small
+                            >
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p style="text-align: center">No anniversaries this month.</p>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock %}
