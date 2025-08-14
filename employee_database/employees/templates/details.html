@@ -13,8 +13,8 @@ Contact: miles@plannedpixel.com
 {% endblock %}
 
 {% block content %}
-  <div class="mycard">
-    <div class="profile-header">
+  <div class="mycard glass-card">
+    <div class="profile-header glass-card">
 
       <div class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10">
         {% if myEmp.head %}
@@ -33,7 +33,7 @@ Contact: miles@plannedpixel.com
       <h1><span>{{ myEmp.firstname }} {{ myEmp.lastname }}</span></h1>
     </div>
 
-    <div class="info-block">
+    <div class="info-block glass-card">
       <div class="info-column">
         <span class="label"><i class="fas fa-phone"></i> Phone</span>
         <span class="value">{{ myEmp.phone }}</span>
