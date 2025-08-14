@@ -30,6 +30,7 @@ Contact: miles@plannedpixel.com
         <!-- Birthdays Column -->
         <div style="flex: 1; min-width: 300px; max-width: 600px">
             <h2>Birthdays</h2>
+            <div class="employee-grid">
             {% for emp in birthdays %}
             <div
                 class="employee-card glass-card"
@@ -87,11 +88,13 @@ Contact: miles@plannedpixel.com
             {% empty %}
             <p style="text-align: center">No birthdays this month.</p>
             {% endfor %}
+            </div>
         </div>
 
         <!-- Anniversaries Column -->
         <div style="flex: 1; min-width: 300px; max-width: 600px">
             <h2>Anniversaries</h2>
+            <div class="employee-grid">
             {% for emp in anniversaries %}
             <div
                 class="employee-card glass-card"
@@ -154,6 +157,7 @@ Contact: miles@plannedpixel.com
             {% empty %}
             <p style="text-align: center">No anniversaries this month.</p>
             {% endfor %}
+            </div>
         </div>
     </div>
 </div>
