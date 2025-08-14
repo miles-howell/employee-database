@@ -13,7 +13,7 @@ Contact: miles@plannedpixel.com
 {% endblock %}
 
 {% block content %}
-  <div class="mycard"> 
+  <div class="mycard glass-card">
     <h1>Search results</h1>
     <form method="get" action="{% url 'search_employees' %}" class="advanced-search-form">
       <input type="text" name="firstname" placeholder="First name" value="{{ request.GET.firstname }}">
@@ -48,7 +48,7 @@ Contact: miles@plannedpixel.com
 
       <div class="employee-grid">
         {% for x in results %}
-          <div class="employee-card hvr-float-shadow" 
+          <div class="employee-card glass-card hvr-float-shadow"
               data-aos="{% if forloop.counter0|divisibleby:2 %}zoom-in-left{% else %}zoom-in-right{% endif %}"
               onclick="document.getElementById('{{ x.slug }}').click()">
             <div class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10">

@@ -20,7 +20,7 @@ Contact: miles@plannedpixel.com
 	  </div>
 	{% endif %}
 
-	<div class="mycard"> 
+        <div class="mycard glass-card">
 		<h1>Employee Directory</h1>
 			<div class="button-container" style="text-align: center;">
 			  <form action="" method="get" style="display: inline-block;">
@@ -36,7 +36,7 @@ Contact: miles@plannedpixel.com
 			</div>
 			<div class="employee-grid">
 			  {% for x in myEmps %}
-			    <div class="employee-card hvr-float-shadow" 
+                            <div class="employee-card glass-card hvr-float-shadow"
             		data-aos="{% if forloop.counter0|divisibleby:2 %}zoom-in-left{% else %}zoom-in-right{% endif %}" 
             		onclick="document.getElementById('{{ x.slug }}').click()">
 			      <div class="watermarks absolute top-2 right-2 flex flex-col items-end space-y-1 z-10">

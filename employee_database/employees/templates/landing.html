@@ -7,7 +7,7 @@ Contact: miles@plannedpixel.com
 -->
 
 {% extends "master.html" %} {% load static %} {% block content %}
-<div class="mycard">
+<div class="mycard glass-card">
     <div style="text-align: center; margin-bottom: 20px">
         <img
             src="https://www.plannedpixel.com/img/filler_logo.jpg"
@@ -32,7 +32,7 @@ Contact: miles@plannedpixel.com
             <h2>Birthdays</h2>
             {% for emp in birthdays %}
             <div
-                class="employee-card"
+                class="employee-card glass-card"
                 onclick="window.location.href='{% url 'details' emp.slug %}'"
             >
                 <div
@@ -94,7 +94,7 @@ Contact: miles@plannedpixel.com
             <h2>Anniversaries</h2>
             {% for emp in anniversaries %}
             <div
-                class="employee-card"
+                class="employee-card glass-card"
                 onclick="window.location.href='{% url 'details' emp.slug %}'"
             >
                 <div
